@@ -5,10 +5,17 @@ import { createContext, useEffect, useState } from "react";
 import { client } from "./apps/Utils/KindeConfig";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigation from "./apps/Navigation/TabNavigation";
+import { useFonts } from "expo-font";
 
 export const AuthContext = createContext();
 export default function App() {
   const [auth, setAuth] = useState(false);
+
+  const [fontsLoaded, fontError] = useFonts({
+    "outfit": require("./assets/fonts/Outfit-Regular.ttf"),
+    "outfit-medium": require("./assets/fonts/Outfit-Medium.ttf"),
+    "outfit-bold": require("./assets/fonts/Outfit-Bold.ttf"),
+  });
 
   const checkAuthenticate = async () => {
     // Using `isAuthenticated` to check if the user is authenticated or not

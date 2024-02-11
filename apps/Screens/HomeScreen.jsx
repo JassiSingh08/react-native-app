@@ -1,21 +1,15 @@
 import { View, Text, Button } from "react-native";
-import React, { useContext } from "react";
-import { client } from "../Utils/KindeConfig";
-import { AuthContext } from "../../App";
+import React, { useState } from "react";
+import Header from "../Components/Header";
+import Platforms from "../Components/Platforms";
 
 export default function HomeScreen() {
-  const { setAuth } = useContext(AuthContext);
-  const handleLogout = async () => {
-    const loggedOut = await client.logout(true);
-    if (loggedOut) {
-      console.log("Logged out  -> forwarding to Login Page");
-      setAuth(false);
-    }
-  };
+  const [platform, setPlatform] = useState();
+  console.log(platform);
   return (
-    <View>
-      <Text>HomeScreen</Text>
-      <Button title="Logout" onPress={handleLogout} />
+    <View style={{ padding: 20, marginTop: 25 }}>
+      <Header />
+      <Platforms selectedPlatform={setPlatform} />
     </View>
   );
 }
